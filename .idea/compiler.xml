@@ -22,7 +22,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="Spree" />
         <module name="Spree_WebDriver_BDD" />
       </profile>
     </annotationProcessing>

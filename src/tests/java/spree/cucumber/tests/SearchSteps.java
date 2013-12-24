@@ -1,25 +1,26 @@
 package spree.cucumber.tests;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.rules.ExpectedException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
+import static spree.cucumber.tests.Constants.*;
 
 public class SearchSteps {
-    public static WebDriver webDriver;
 
-    @cucumber.api.java.en.Given("^I am on HomePage$")
+    @Given("^I am on HomePage$")
     public void I_am_on_HomePage() throws Throwable {
-        webDriver = new FirefoxDriver();
-        webDriver.get("localhost:3000");
-
-
+        webDriver.get("http://10.4.32.99:3000");
+        Thread.sleep(5000);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("LOGIN")));
     }
 
     @When("^I search for \"([^\"]*)\"$")
@@ -35,7 +36,7 @@ public class SearchSteps {
         // Express the Regexp above with the code you wish you had
         List<WebElement> products = webDriver.findElements(By.id("products"));
 
-        for(WebElement p : products) {
+        for (WebElement p : products) {
             assertTrue("PRODUCT NAME" + p.getText(), p.findElement(By.className("info")).getText().toLowerCase().contains(productName));
         }
     }
