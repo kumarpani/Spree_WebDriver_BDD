@@ -3,22 +3,20 @@ package spree.cucumber.tests;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.rules.ExpectedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
-import static spree.cucumber.tests.Constants.*;
+import static spree.cucumber.tests.Constants.SpreeHostName;
+import static spree.cucumber.tests.Constants.webDriver;
 
 public class SearchSteps {
 
     @Given("^I am on HomePage$")
     public void I_am_on_HomePage() throws Throwable {
-        webDriver.get("http://10.4.32.99:3000");
+        webDriver.get(SpreeHostName);
         Thread.sleep(5000);
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("LOGIN")));
     }
