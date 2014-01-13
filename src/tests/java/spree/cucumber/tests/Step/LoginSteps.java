@@ -1,14 +1,17 @@
-package spree.cucumber.tests;
+package spree.cucumber.tests.Step;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
+import spree.cucumber.tests.Pages.BasePage;
+import spree.cucumber.tests.Pages.SearchPage;
 
 import static org.junit.Assert.assertTrue;
-import static spree.cucumber.tests.Constants.*;
+//import static spree.cucumber.tests.Constants.*;
 
-public class LoginSteps {
+public class LoginSteps extends BasePage{
+
     @When("^When I click on the Login Link$")
     public void When_I_click_on_the_Login_Link() throws Throwable {
         //webDriver.findElement(By.id("link-to-login")).click();
