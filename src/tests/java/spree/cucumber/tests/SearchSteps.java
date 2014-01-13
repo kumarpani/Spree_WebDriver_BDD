@@ -1,5 +1,6 @@
 package spree.cucumber.tests;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -36,6 +37,22 @@ public class SearchSteps {
 
         for (WebElement p : products) {
             assertTrue("PRODUCT NAME" + p.getText(), p.findElement(By.className("info")).getText().toLowerCase().contains(productName));
+
         }
     }
+
+
+
+    @Then("^I should see \"([^\"]*)\" of \"([^\"]*)\" in the results$")
+    public void I_should_see_of_in_the_results(String productCount, String productName) throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        List<WebElement> products = webDriver.findElements(By.xpath("//li[starts-with(@id,'product_')]"));
+        assertTrue("Product count matches",products.size()==Integer.parseInt(productCount) );
+        for (WebElement p : products)
+            assertTrue("PRODUCT NAME" + p.getText() + " is not matching", p.findElement(By.className("info")).getText().toLowerCase().contains(productName));
+
+
 }
+}
+
+

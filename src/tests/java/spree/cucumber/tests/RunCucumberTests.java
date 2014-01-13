@@ -1,4 +1,4 @@
-package src.tests.java.spree.cucumber.tests;
+package spree.cucumber.tests;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
