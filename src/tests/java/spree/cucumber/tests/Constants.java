@@ -14,5 +14,5 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Constants {
     public static WebDriver webDriver = new FirefoxDriver();
     public static WebDriverWait wait;
-    public static String SpreeHostName ="http://10.4.33.77:3000";
+    public static String SpreeHostName ="http://0.0.0.0:3000";
 }

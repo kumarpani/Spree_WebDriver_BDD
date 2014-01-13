@@ -1,6 +1,5 @@
 package spree.cucumber.tests;
 
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -22,8 +21,8 @@ public class SearchSteps {
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("LOGIN")));
     }
 
-    @When("^I search for \"([^\"]*)\"$")
-    public void I_search_for(String product) throws Throwable {
+    @When("^I search for product \"([^\"]*)\"$")
+    public void I_search_for_product(String product) throws Throwable {
         // Express the Regexp above with the code you wish you had
         webDriver.findElement(By.id("keywords")).sendKeys(product);
         webDriver.findElement(By.cssSelector("input[type='submit']")).click();
@@ -42,17 +41,20 @@ public class SearchSteps {
     }
 
 
-
-    @Then("^I should see \"([^\"]*)\" of \"([^\"]*)\" in the results$")
-    public void I_should_see_of_in_the_results(String productCount, String productName) throws Throwable {
+    @Then(value = "^I should see product with name \"([^\"]*)\" in the results with the count of \"([^\"]*)\"$")
+    public void I_should_see_item_in_the_results_with_the_count_of(String productName, String productCount) throws Throwable {
         // Express the Regexp above with the code you wish you had
         List<WebElement> products = webDriver.findElements(By.xpath("//li[starts-with(@id,'product_')]"));
-        assertTrue("Product count matches",products.size()==Integer.parseInt(productCount) );
+
+        // Assert count of the products in the result */
+        assertTrue("Product count matches",products.size()==Integer.parseInt(productCount));
+
+        // Assert product name 
         for (WebElement p : products)
             assertTrue("PRODUCT NAME" + p.getText() + " is not matching", p.findElement(By.className("info")).getText().toLowerCase().contains(productName));
+    }
 
 
-}
 }
 
 
