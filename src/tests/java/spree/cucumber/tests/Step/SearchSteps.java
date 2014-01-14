@@ -1,4 +1,4 @@
-package spree.cucumber.tests;
+package spree.cucumber.tests.Step;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -6,14 +6,15 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import spree.cucumber.tests.Pages.BasePage;
 
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
-import static spree.cucumber.tests.Constants.SpreeHostName;
-import static spree.cucumber.tests.Constants.webDriver;
+//import static spree.cucumber.tests.Constants.SpreeHostName;
+//import static spree.cucumber.tests.Constants.webDriver;
 
-public class SearchSteps {
+public class SearchSteps extends BasePage{
 
     @Given("^I am on HomePage$")
     public void I_am_on_HomePage() throws Throwable {
@@ -44,6 +45,7 @@ public class SearchSteps {
 
     @Then(value = "^I should see product with name \"([^\"]*)\" in the results with the count of \"([^\"]*)\"$")
     public void I_should_see_item_in_the_results_with_the_count_of(String productName, String productCount) throws Throwable {
+
         // Express the Regexp above with the code you wish you had
         List<WebElement> products = webDriver.findElements(By.xpath("//li[starts-with(@id,'product_')]"));
 
