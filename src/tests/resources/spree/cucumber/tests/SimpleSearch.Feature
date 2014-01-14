@@ -16,3 +16,14 @@ Feature:
     | item  | count |
     | rails | 7     |
     | tote  | 2     |
+
+
+  Scenario Outline: Search for product by category
+    Given I am on HomePage
+    When I click on Product Category "<category>"
+    Then I should see all Products with Category "<category>" in the results
+  Examples:
+    | category  |
+    | Bags      |
+    | Mugs      |
+    | Clothing  |

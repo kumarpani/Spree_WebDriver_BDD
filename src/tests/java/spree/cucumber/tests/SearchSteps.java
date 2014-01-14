@@ -1,5 +1,6 @@
 package spree.cucumber.tests;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -49,12 +50,27 @@ public class SearchSteps {
         // Assert count of the products in the result */
         assertTrue("Product count matches",products.size()==Integer.parseInt(productCount));
 
-        // Assert product name 
+        // Assert product name
         for (WebElement p : products)
             assertTrue("PRODUCT NAME" + p.getText() + " is not matching", p.findElement(By.className("info")).getText().toLowerCase().contains(productName));
     }
 
 
+    @When("^I click on Product Category \"([^\"]*)\"$")
+    public void I_click_on_Product_Category(String productCategory) throws Throwable {
+        // Express the Regexp above with the code you wish you had
+        webDriver.findElement(By.linkText(productCategory)).click();
+        Thread.sleep(2000);
+    }
+
+    @Then("^I should see all Products with Category \"([^\"]*)\" in the results$")
+    public void I_should_see_all_Products_with_Category_in_the_results(String productCategory) throws Throwable {
+        // Express the Regexp above with the code you wish you had
+
+        List<WebElement> products = webDriver.findElements(By.className(productCategory));
+
+        throw new PendingException();
+    }
 }
 
 
