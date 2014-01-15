@@ -21,9 +21,10 @@ Feature:
   Scenario Outline: Search for product by category
     Given I am on HomePage
     When I click on Product Category "<category>"
-    Then I should see all Products with Category "<category>" in the results
+    Then I should see all Products with Category "<category>" in the results with the count of "<count>"
+
   Examples:
-    | category  |
-    | Bags      |
-    | Mugs      |
-    | Clothing  |
+    | category  | count   |
+    | Bags      | 4       |
+    | Mugs      | 4       |
+    | Clothing  | 16      |

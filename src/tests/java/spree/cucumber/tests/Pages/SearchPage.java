@@ -1,6 +1,9 @@
 package spree.cucumber.tests.Pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -39,4 +42,39 @@ public class SearchPage extends BasePage{
         getElementByXpath(cartLink).click();
         return new ShoppingCartPage();
     }
-}
+
+    public SearchPage  verifySearchResults(String productName)
+    {
+        List<WebElement> products = getElementListByXpath("//li[starts-with(@id,'product_')]");
+        // Assert product name
+        for (WebElement p : products)
+            assertTrue("PRODUCT NAME" + p.getText() + " is not matching", p.findElement(By.className("info")).getText().toLowerCase().contains(productName));
+        return this;
+
+    }
+
+    public SearchPage  verifySearchResultsCount(int productCount)
+    {
+        List<WebElement> products = getElementListByXpath("//li[starts-with(@id,'product_')]");
+        // Assert product count
+        assertTrue("Product count is not matching",products.size()==productCount);
+        return this;
+
+    }
+
+    public SearchPage verifyCategoryNameInSearchResults(String categoryName){
+
+        assertTrue("Category Name is not matching", getElementListByXpath("//h1[@class='taxon-title']").get(0).getText().equals(categoryName));
+        return this;
+    }
+
+    public SearchPage verifyCategoryNameCountInSearchResults(int categoryCount){
+
+        assertTrue("Category count is not matching", getElementListByXpath("//h1[@class='taxon-title']").size()==categoryCount);
+        return this;
+    }
+
+    }
+
+
+

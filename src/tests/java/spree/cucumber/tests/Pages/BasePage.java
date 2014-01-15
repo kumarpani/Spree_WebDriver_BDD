@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.List;
+
 /**
  * Created by Admin on 13/01/14.
  */
@@ -21,4 +23,9 @@ public class BasePage {
     public WebElement getElementByXpath(String xpath) {
         return webDriver.findElement(By.xpath(xpath));
     }
+
+    public List<WebElement> getElementListByXpath(String xpath) {
+        return webDriver.findElements(By.xpath(xpath));
+    }
+
 }
